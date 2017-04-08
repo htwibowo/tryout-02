@@ -5,6 +5,7 @@ import './index.css'
 import todoService from '../../services/todo'
 
 class TodoList extends Component {
+
     constructor(props) {
         super(props);
 
@@ -50,6 +51,11 @@ class TodoList extends Component {
         })
     }
 
+    deleteItem(item) {
+        const idx = this.state.items.indexOf(item)
+        todoService.deleteItem(idx).then(this.updateItem)
+    }
+
     updateItem() {
         todoService.items().then(response => {
             console.log(response)
@@ -79,6 +85,7 @@ class TodoList extends Component {
                 </form>
 
                 {this.state.items.map(item => <TodoItem
+                    onDelete={() => this.deleteItem(item)}
                     selected={item === this.state.selectedItem}
                     text={item.item}
                     onPress={() => this.selectItem(item)}
