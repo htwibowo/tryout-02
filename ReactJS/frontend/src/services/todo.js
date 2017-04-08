@@ -13,6 +13,10 @@ class Todo {
             }
         })
     }
+
+    deleteItem(idx) {
+        return axios.delete('/' + idx)
+    }
 }
 
 const todo = new Todo()
