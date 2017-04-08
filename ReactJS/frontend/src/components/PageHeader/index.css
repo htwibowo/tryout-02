@@ -1,0 +1,12 @@
+.header {
+    padding: 16px;
+    background: #194d33;
+    color: white;
+    font-size: 24px;
+    text-transform: capitalize;
+    margin: auto;
+    max-width: 640px;
+    margin-top: 16px;
+}
+
+
