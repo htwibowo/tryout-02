@@ -2,6 +2,20 @@
     background: white;
     padding: 16px;
     margin: 16px 0;
+    position: relative;
+}
+
+.floatingAction {
+    float: right;
+}
+
+.floatingAction button {
+    border: 1px solid #ddd;
+    background: #aa3333;
+    padding: 4px 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .selected {
