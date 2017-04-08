@@ -1,0 +1,26 @@
+.todoList {
+    max-width: 640px;
+    margin: auto;
+    padding: 16px;
+    background: #ddd;
+}
+
+.inputGroup {
+    display: flex;
+    flex: 1;
+}
+
+.button {
+    font-size: 20px;
+    border: 1px solid #adadad;
+    background: #fff;
+    flex: 1;
+    padding: 16px 8px;
+}
+
+.input {
+    font-size: 20px;
+    flex: 4;
+    padding: 16px;
+}
+
