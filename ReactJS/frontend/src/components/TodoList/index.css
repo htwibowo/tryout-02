@@ -24,3 +24,11 @@
     padding: 16px;
 }
 
+.redAlert {
+    background: #ff6565;
+    color: white;
+    font-weight: bold;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
