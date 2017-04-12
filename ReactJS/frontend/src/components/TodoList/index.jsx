@@ -14,6 +14,7 @@ class TodoList extends Component {
             selectedItem: null,
             inputText: '',
             submitDisabled: false,
+            alert: false,
         };
 
         this.submit = this.submit.bind(this)
@@ -30,13 +31,30 @@ class TodoList extends Component {
 
         this.disableSubmit()
 
-        todoService
-            .addItem(this.state.inputText)
-            .then(this.updateItem)
-            .then(() => {
-                this.textInput.value = ''
-                this.enableSubmit()
-            })
+        if (this.validItem()) {
+            todoService
+                .addItem(this.state.inputText)
+                .then(this.updateItem)
+                .then(() => {
+                    this.setState({
+                        inputText: '',
+                    })
+                    this.textInput.value = ''
+                    this.enableSubmit()
+                    this.toggleAlert(false)
+                })
+                .catch(() => {
+                    this.enableSubmit()
+                    this.toggleAlert(false)
+                })
+        } else {
+            this.toggleAlert(true)
+            this.enableSubmit()
+        }
+    }
+
+    toggleAlert(state) {
+        this.setState({ alert: state })
     }
 
     disableSubmit() {
@@ -65,6 +83,10 @@ class TodoList extends Component {
         })
     }
 
+    validItem() {
+        return this.state.inputText !== ''
+    }
+
     inputChanged(e) {
         this.setState({
             inputText: e.target.value
@@ -74,6 +96,9 @@ class TodoList extends Component {
     render() {
         return (
             <div className="todoList">
+                {this.state.alert && <div className="redAlert">
+                    <p>Input tidak boleh kosong</p>
+                </div>}
                 <form className="inputGroup" onSubmit={this.submit}>
                     <input ref={(input) => { this.textInput = input; }} onChange={this.inputChanged} className="input" />
                     <button
